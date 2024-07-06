@@ -45,4 +45,4 @@ Changelog
 
 ### Version 0.1.0
 
-To be released.
+Initial release.  Released on July 6, 2024.
