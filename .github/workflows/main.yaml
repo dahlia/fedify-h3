@@ -1,0 +1,60 @@
+name: main
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: npm ci
+    - run: npm run build
+
+  publish:
+    if: github.event_name == 'push'
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+    - id: extract-changelog
+      uses: dahlia/submark@5a5ff0a58382fb812616a5801402f5aef00f90ce
+      with:
+        input-file: README.md
+        heading-level: 3
+        heading-title-text: version ${{ github.ref_name }}
+        ignore-case: true
+        omit-heading: true
+    - run: 'cat "$CHANGES_FILE"'
+      env:
+        CHANGES_FILE: ${{ steps.extract-changelog.outputs.output-file }}
+    - if: github.ref_type == 'branch'
+      run: |
+        jq \
+          --arg build "$GITHUB_RUN_NUMBER" \
+          --arg commit "${GITHUB_SHA::8}" \
+          '.version = .version + "-dev." + $build + "+" + $commit' \
+          package.json > package.json.tmp
+        mv package.json.tmp package.json
+    - if: github.ref_type == 'tag'
+      run: '[[ "$(jq -r .version package.json)" = "$GITHUB_REF_NAME" ]]'
+    - run: npm ci
+    - run: npm pack
+    - run: |
+        set -ex
+        npm config set //registry.npmjs.org/:_authToken "$NPM_AUTH_TOKEN"
+        if [[ "$GITHUB_REF_TYPE" = "tag" ]]; then
+          npm publish --provenance --access public *.tgz
+        else
+          npm publish --provenance --access public --tag dev *.tgz
+        fi
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - if: github.event_name == 'push' && github.ref_type == 'tag'
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: ${{ steps.extract-changelog.outputs.output-file }}
+        name: "@fedify/h3 ${{ github.ref_name }}"
+        files: "*.tgz"
+        generate_release_notes: false

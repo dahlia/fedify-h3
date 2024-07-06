@@ -11,7 +11,7 @@
   "homepage": "https://github.com/dahlia/fedify-h3",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dahlia/fedify.git"
+    "url": "git+https://github.com/dahlia/fedify-h3.git"
   },
   "license": "MIT",
   "bugs": {
