@@ -1,0 +1,38 @@
+{
+  "name": "@fedify/h3",
+  "version": "0.1.0",
+  "description": "Integrate Fedify with h3",
+  "keywords": ["Fedify", "h3"],
+  "author": {
+    "name": "Hong Minhee",
+    "email": "hong@minhee.org",
+    "url": "https://hongminhee.org/"
+  },
+  "homepage": "https://github.com/dahlia/fedify-h3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dahlia/fedify.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dahlia/fedify-h3/issues"
+  },
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["src/", "dist/"],
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/node": "^20.14.10",
+    "tsup": "^8.1.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@fedify/fedify": ">=0.10.0, <1",
+    "h3": "^1.8.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepack": "tsup"
+  }
+}
