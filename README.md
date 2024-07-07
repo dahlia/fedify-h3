@@ -5,7 +5,10 @@
 [![Matrix][Matrix badge]][Matrix]
 [![Follow @fedify@hollo.social][@fedify@hollo.social badge]][@fedify@hollo.social]
 
-This package provides a simple way to integrate [Fedify] with [h3].
+This package provides a simple way to integrate [Fedify] with [h3],
+an HTTP server framework behind [Nitro], [Analog], [Vinxi],
+[SolidStart], [TanStack Start], and other many web frameworks.
+
 The integration code looks like this:
 
 ~~~~ typescript
@@ -38,6 +41,11 @@ app.use(router);
 [@fedify@hollo.social]: https://hollo.social/@fedify
 [Fedify]: https://fedify.dev/
 [h3]: https://h3.unjs.io/
+[Nitro]: https://nitro.unjs.io/
+[Analog]: https://analogjs.org/
+[Vinxi]: https://vinxi.vercel.app/
+[SolidStart]: https://start.solidjs.com/
+[TanStack Start]: https://tanstack.com/start
 
 
 Changelog
