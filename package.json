@@ -17,6 +17,10 @@
   "bugs": {
     "url": "https://github.com/dahlia/fedify-h3/issues"
   },
+  "funding": [
+    "https://github.com/sponsors/dahlia",
+    "https://toss.me/hongminhee"
+  ],
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
