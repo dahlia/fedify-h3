@@ -53,7 +53,7 @@ Changelog
 
 ### Version 0.1.1
 
-To be released.
+Released on August 6, 2024.
 
  -  Added missing entry points to the *package.json*.
 
