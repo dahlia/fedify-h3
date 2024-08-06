@@ -55,6 +55,8 @@ Changelog
 
 To be released.
 
+ -  Added missing entry points to the *package.json*.
+
 ### Version 0.1.0
 
 Initial release.  Released on July 6, 2024.
