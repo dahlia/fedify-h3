@@ -19,7 +19,6 @@
   },
   "funding": [
     "https://github.com/sponsors/dahlia",
-    "https://toss.me/hongminhee"
   ],
   "type": "module",
   "module": "dist/index.js",
